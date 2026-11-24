@@ -1,0 +1,136 @@
+1
+ORD01
+Budi Santoso
+5
+y
+1
+ORD02
+Siti Aminah
+2
+y
+1
+ORD03
+Andi Wijaya
+8
+y
+1
+ORD04
+Rina Kusuma
+4
+y
+1
+ORD05
+Dimas Pratama
+1
+y
+2
+
+ORD01
+Nasi Goreng Spesial
+Makanan
+25000
+2
+y
+2
+ORD01
+Ayam Bakar Madu
+Makanan
+30000
+1
+y
+2
+ORD01
+Es Teh Manis
+Minuman
+5000
+3
+y
+2
+
+ORD02
+Mie Goreng Jawa
+Makanan
+22000
+2
+y
+2
+ORD02
+Kentang Goreng
+Snack
+14000
+1
+y
+2
+ORD02
+Jus Alpukat
+Minuman
+15000
+2
+y
+2
+
+ORD03
+Sate Ayam Madura
+Makanan
+28000
+2
+y
+2
+ORD03
+Puding Cokelat
+Dessert
+12000
+2
+y
+2
+ORD03
+Es Jeruk Peras
+Minuman
+8000
+2
+y
+2
+ORD04
+Soto Ayam Lamongan
+Makanan
+20000
+1
+y
+2
+ORD04
+Tahu Crispy
+Snack
+12000
+2
+y
+2
+ORD04
+Kopi Susu Gula Aren
+Minuman
+18000
+1
+y
+2
+ORD05
+Steak Ayam Crispy
+Makanan
+35000
+2
+y
+2
+ORD05
+Es Krim Vanila
+Dessert
+15000
+2
+y
+2
+ORD05
+Lemon Tea
+Minuman
+10000
+2
+y
+8
+1
+

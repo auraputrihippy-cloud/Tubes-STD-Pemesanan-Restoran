@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1795560000 source:/Users/muhamadhabibinurrahman/Documents/STRUKDAT HIPPY/TUBES RESTORAN/main.cpp
+	<iostream>
+	<string>
+	"pemesanan.h"
+
+1795560000 /Users/muhamadhabibinurrahman/Documents/STRUKDAT HIPPY/TUBES RESTORAN/pemesanan.h
+	<iostream>
+	<string>
+	<cstdlib>
+
+1795560000 source:/Users/muhamadhabibinurrahman/Documents/STRUKDAT HIPPY/TUBES RESTORAN/pemesanan.cpp
+	"pemesanan.h"
+	<iostream>
+	<iomanip>
+	<string>
+	<cstdlib>
