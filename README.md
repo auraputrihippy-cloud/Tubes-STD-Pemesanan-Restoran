@@ -84,4 +84,4 @@ g++ main.cpp pemesanan.cpp -o pemesanan_app
 2. Klik **Build and Run** (`F9`).
 
 ### Mengisi Data Uji Otomatis
-Buka file [dummy_data.txt](dummy_data.txt), salin seluruh isinya, lalu tempel (*paste*) langsung ke konsol saat program berada pada menu utama untuk memuat 7 transaksi (membentuk BST seimbang dengan tinggi 3), 6 menu, dan 18 item relasi secara instan.
+Buka file [data](dummy_data.txt), salin seluruh isinya, lalu tempel (*paste*) langsung ke konsol saat program berada pada menu utama untuk memuat 7 transaksi (membentuk BST seimbang dengan tinggi 3), 6 menu, dan 18 item relasi secara instan.
