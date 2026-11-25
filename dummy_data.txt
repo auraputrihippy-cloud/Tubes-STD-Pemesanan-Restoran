@@ -1,136 +1,155 @@
 1
-ORD01
-Budi Santoso
-5
-y
+104
+CUST04
+12:15
+Dibayar
 1
-ORD02
-Siti Aminah
+102
+CUST02
+08:30
+Selesai
+1
+106
+CUST06
+19:20
+Diproses
+1
+101
+CUST01
+12:45
+Dibayar
+1
+103
+CUST03
+16:10
+Selesai
+1
+105
+CUST05
+13:05
+Dibayar
+1
+107
+CUST07
+20:00
+Diproses
 2
-y
-1
-ORD03
-Andi Wijaya
-8
-y
-1
-ORD04
-Rina Kusuma
-4
-y
-1
-ORD05
-Dimas Pratama
-1
-y
-2
-
-ORD01
+MN01
 Nasi Goreng Spesial
 Makanan
 25000
 2
-y
-2
-ORD01
+MN02
 Ayam Bakar Madu
 Makanan
 30000
-1
-y
 2
-ORD01
-Es Teh Manis
-Minuman
-5000
-3
-y
-2
-
-ORD02
+MN03
 Mie Goreng Jawa
 Makanan
 22000
 2
-y
-2
-ORD02
-Kentang Goreng
-Snack
-14000
-1
-y
-2
-ORD02
-Jus Alpukat
+MN04
+Es Teh Manis
 Minuman
-15000
+6000
 2
-y
-2
-
-ORD03
-Sate Ayam Madura
-Makanan
-28000
-2
-y
-2
-ORD03
-Puding Cokelat
-Dessert
-12000
-2
-y
-2
-ORD03
-Es Jeruk Peras
-Minuman
-8000
-2
-y
-2
-ORD04
-Soto Ayam Lamongan
-Makanan
-20000
-1
-y
-2
-ORD04
-Tahu Crispy
-Snack
-12000
-2
-y
-2
-ORD04
+MN05
 Kopi Susu Gula Aren
 Minuman
 18000
-1
-y
 2
-ORD05
-Steak Ayam Crispy
-Makanan
-35000
-2
-y
-2
-ORD05
-Es Krim Vanila
-Dessert
+MN06
+Kentang Goreng
+Snack
 15000
+3
+104
+MN01
 2
-y
+Pedas sedang
+3
+104
+MN04
 2
-ORD05
-Lemon Tea
-Minuman
-10000
-2
-y
-8
+Kurangi gula
+3
+104
+MN06
 1
-
+Tambah saus keju
+3
+102
+MN03
+1
+Normal
+3
+102
+MN05
+2
+Less sugar
+3
+106
+MN01
+1
+Ekstra sambal
+3
+106
+MN02
+2
+Bumbu madu dipisah
+3
+106
+MN04
+3
+Es sedikit
+3
+101
+MN01
+3
+Tanpa acar
+3
+101
+MN04
+3
+Normal
+3
+103
+MN06
+2
+Bumbu balado
+3
+103
+MN05
+2
+Less ice
+3
+105
+MN01
+2
+Pedas
+3
+105
+MN02
+1
+Normal
+3
+105
+MN04
+2
+Kurangi gula
+3
+107
+MN02
+2
+Tambah sambal
+3
+107
+MN03
+1
+Tanpa sayur
+3
+107
+MN06
+1
+-

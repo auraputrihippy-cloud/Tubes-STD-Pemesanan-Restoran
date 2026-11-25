@@ -1,74 +1,87 @@
-# 🍽️ Sistem Pemesanan Menu Restoran (C++)
+# 🍽️ Sistem Pemesanan Menu Restoran Online (C++)
 
-Aplikasi manajemen pemesanan menu restoran berbasis _console_ (CLI) yang dibangun menggunakan bahasa C++. Proyek ini mengimplementasikan struktur data **Multi-Linked List (1-to-N)** berbasis **Doubly Linked List** (*Parent-Child*) untuk mengelola hubungan antara data Pesanan Pelanggan dan daftar Item Menu yang dipesan.
+Aplikasi manajemen pemesanan menu restoran berbasis *console* (CLI) yang dibangun menggunakan bahasa **C++** dengan pendekatan **Abstract Data Type (ADT)** terpisah. Proyek ini disusun untuk memenuhi **Topik 13 — Pemesanan Menu Restoran (Online)** dengan mengimplementasikan dua struktur data utama: **Multi-Linked List Model 02 (MLL-02)** dan **Binary Search Tree (BST)**.
 
-## 📋 Fitur Utama
+---
 
-Aplikasi ini dilengkapi operasi **CRUD** (Create, Read, Update, Delete) secara menyeluruh, perhitungan tagihan otomatis, pencarian lintas pesanan, serta pengurutan tabel:
+## 🏗️ Arsitektur Struktur Data
 
-### 1. Manajemen Pesanan (Parent)
-- **Insert:** Membuat pesanan baru berdasarkan kode pesanan unik (otomatis terurut secara alfabetis / *sorted insert* A–Z) dengan status awal `Diproses`.
-- **Update:** Memperbarui nama pelanggan, nomor meja, dan status pesanan (`Diproses` / `Selesai` / `Dibayar`).
-- **Delete:** Membatalkan atau menghapus pesanan beserta seluruh item menu di dalamnya secara otomatis (*cascade delete*) sekaligus membebaskan memori.
-- **View & Struk:** Menampilkan ringkasan seluruh pesanan dalam format tabel yang rapi serta rincian struk pesanan lengkap dengan subtotal per item, total porsi, dan total bayar.
+### 1. Multi-Linked List Model 02 (`MLL-02` / N-to-M)
+Satu transaksi pesanan dapat memuat banyak menu berbeda, dan satu jenis menu dapat dipesan pada banyak transaksi berbeda. Relasi disimpan dalam **list relasi terpisah** di luar list parent maupun child.
 
-### 2. Manajemen Item Menu Pesanan (Child)
-- **Insert:** Menambahkan item menu (nama menu, kategori, harga satuan, dan jumlah porsi) ke pesanan tertentu. Jika menu dengan nama yang sama ditambahkan lagi ke pesanan yang sama, jumlah porsi otomatis digabungkan.
-- **Update:** Mengubah nama menu, kategori (`Makanan` / `Minuman` / `Snack` / `Dessert`), harga satuan, dan jumlah porsi.
-- **Delete:** Menghapus item menu tertentu dari sebuah pesanan.
-- **Search:** Mencari seluruh pesanan yang memesan suatu nama menu tertentu beserta rincian jumlah porsi dan subtotalnya.
+| Komponen | Nama List | Tipe List Dasar | Metode Insert | Atribut Data (`infotype`) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Parent (Order)** | `ListOrder` | Doubly Linked List (`first`, `last`) | **Insert Last** | `nomorOrder`, `idPelanggan`, `waktuPesan`, `statusPesanan` |
+| **Child (Menu)** | `ListMenu` | Doubly Linked List (`first`, `last`) | **Insert First** | `idMenu`, `namaMenu`, `kategori`, `hargaSatuan` |
+| **Relasi (Item Pesanan)** | `ListRelasi` | Singly Linked List (`first`) | **Insert First** | `nomorOrder`, `jumlahPorsi`, `hargaSaatPesan`, `catatan`, pointer `parent` & `child` |
 
-### 3. Fitur Lanjutan (Sorting & Perhitungan Otomatis)
-Aplikasi mendukung pengurutan tabel pesanan menggunakan algoritma **Selection Sort** berdasarkan 6 kriteria:
-- 🔤 **Mode 1:** Kode Pesanan (A–Z)
-- 💰 **Mode 2:** Total Bayar Tertinggi
-- 💵 **Mode 3:** Total Bayar Terendah
-- 🔢 **Mode 4:** Total Porsi Terbanyak
-- 🍛 **Mode 5:** Jumlah Porsi _Makanan_ Terbanyak
-- 🥤 **Mode 6:** Jumlah Porsi _Minuman_ Terbanyak
+### 2. Binary Search Tree (`BST`)
+Digunakan untuk pencarian cepat riwayat dan status transaksi dengan **key `nomorOrder` (`int`)**. Setiap node (`NodeBST`) menyimpan `infotypeOrder`, pointer `left`, dan pointer `right`.
 
-## 🛠️ Struktur Data & Susunan File
+---
 
-Proyek ini menggunakan **Multi-Linked List** (*List of Lists*):
-- **List Parent (`ListPesanan`):** Menggunakan _Doubly Linked List_ (`next` dan `prev`). Setiap _node_ pesanan (`elemenPesanan`) memiliki pointer ke _node_ item menu pertamanya (`firstItem`).
-- **List Child (`elemenItem`):** Menggunakan _Doubly Linked List_ (`next` dan `prev`) yang menyimpan rincian menu dalam lingkup satu pesanan.
+## ✨ Fitur Program
 
-**Susunan File Proyek:**
-- `main.cpp` — Program utama (menu interaktif berbasis CLI).
-- `pemesanan.h` — Header file berisi deklarasi struktur data (ADT) dan prototipe fungsi/prosedur.
-- `pemesanan.cpp` — Implementasi logika linked list, perhitungan total bayar, pengurutan, serta tampilan tabel dan struk.
-- `TUBES_RESTORAN.cbp` — File konfigurasi proyek untuk Code::Blocks IDE.
-- `dummy_data.txt` — Data sampel siap pakai untuk pengujian cepat.
+### Fungsionalitas Umum MLL-02
+* **Penambahan Elemen:** Tambah Order (*Insert Last* + sinkronisasi otomatis ke BST), tambah Menu (*Insert First*), dan tambah Relasi Item Pesanan (*Insert First*).
+* **Penghapusan Elemen:** Hapus Order beserta seluruh relasinya (*cascade delete*), hapus Menu beserta seluruh relasinya, serta hapus satu relasi tertentu.
+* **Pencarian & Pengecekan Relasi:** Cari Order, cari Menu, dan cek apakah Order & Menu saling berelasi.
+* **Tampilan Data:** Tampilkan daftar Order, daftar Menu, seluruh Order beserta Menu-nya (`Parent -> Child`), serta seluruh Menu beserta Order-nya (`Child -> Parent`).
+* **Perhitungan Relasi:** Hitung jumlah jenis Menu (child) pada Order tertentu dan jumlah Order (parent) yang memesan Menu tertentu.
+* **Pembaruan Status:** Update `statusPesanan` secara tersinkronisasi antara MLL dan BST.
 
-## 🚀 Cara Menjalankan
+### Fungsionalitas Umum BST
+* **Insert Node:** Menyisipkan riwayat order berdasarkan key `nomorOrder`.
+* **Search Node:** Mencari riwayat dan status transaksi berdasarkan `nomorOrder`.
+* **Delete Node:** Menghapus node dengan penanganan lengkap kasus **daun (0 anak)**, **1 anak**, dan **2 anak** (*in-order successor*).
+* **Traversal:** Menampilkan data dengan urutan **In-Order**, **Pre-Order**, dan **Post-Order**.
+* **Statistik Pohon:** Menampilkan nilai minimum, maksimum, tinggi pohon (*height*), dan jumlah total node.
 
-### Opsi 1: Menggunakan Terminal / Command Prompt (CLI)
-**Prasyarat:** Compiler C++ (`g++` / Clang / MinGW).
+### Fungsionalitas Khusus (Topik 13)
+1. **Total Porsi per Menu:** Menghitung total `jumlahPorsi` per `idMenu` dan menampilkan menu paling banyak diminati pelanggan.
+2. **Analisis Menu Dipesan Bersamaan:** Melihat pasangan menu yang sering dipesan bersamaan dalam satu transaksi `nomorOrder`.
+3. **Total Pendapatan per Menu:** Menghitung total pendapatan per menu (`jumlahPorsi * hargaSaatPesan`) beserta total keseluruhan.
+4. **Analisis Waktu Favorit Menu:** Menggabungkan `waktuPesan` dengan `idMenu` untuk mengetahui distribusi slot waktu (*Pagi / Siang / Sore / Malam*) serta waktu favorit pelanggan memesan menu tertentu.
 
-1. Buka Terminal atau CMD lalu masuk ke folder proyek.
-2. Kompilasi program:
-   ```bash
-   g++ main.cpp pemesanan.cpp -o pemesanan_app
-   ```
-3. Jalankan program:
-   - **macOS / Linux:**
-     ```bash
-     ./pemesanan_app
-     ```
-   - **Windows:**
-     ```bash
-     pemesanan_app.exe
-     ```
+---
 
-### Opsi 2: Menggunakan Code::Blocks IDE
-1. Pastikan file `main.cpp`, `pemesanan.cpp`, `pemesanan.h`, dan `TUBES_RESTORAN.cbp` berada di dalam satu folder yang sama.
-2. Buka file `TUBES_RESTORAN.cbp` langsung menggunakan Code::Blocks.
-3. Tekan tombol **F9** (*Build and Run*) untuk menjalankan aplikasi.
+## ✅ Kepatuhan Ketentuan Teknis
+* ADT dasar `Doubly Linked List` dan `Singly Linked List` digunakan sesuai standar tanpa modifikasi struktural.
+* Variasi metode penambahan antar-list terpenuhi (1 *Insert Last* dan 2 *Insert First*).
+* Pemisahan file header (`pemesanan.h`), implementasi (`pemesanan.cpp`), dan driver (`main.cpp`).
+* Seluruh subprogram menggunakan parameter (tanpa variabel global) dan dilengkapi spesifikasi **I.S. / F.S.**
+* Tidak menggunakan `break` ataupun `return` di dalam perulangan.
+* Library yang digunakan terbatas pada I/O (`<iostream>`, `<iomanip>`) dan string (`<string>`).
 
-*(Jika membuat proyek baru secara manual di Code::Blocks: pilih **Console Application (C++)**, hapus file `main.cpp` bawaan, salin `main.cpp`, `pemesanan.cpp`, dan `pemesanan.h` ke folder proyek, lalu klik kanan nama proyek > **Add files...** untuk menambahkan ketiganya).*
+---
 
-## 📚 Data Dummy (Copy & Paste)
+## 📂 Struktur File
 
-Berikut adalah [data](dummy_data.txt) sampel yang dapat digunakan untuk menguji aplikasi.
+```text
+TUBES RESTORAN/
+├── main.cpp                 # Program utama & antarmuka menu interaktif (0-19)
+├── pemesanan.h              # Definisi ADT MLL-02 & BST serta deklarasi subprogram (I.S./F.S.)
+├── pemesanan.cpp            # Implementasi seluruh primitif MLL-02, BST, & analisis khusus
+├── dummy_data.txt           # Skenario input data uji (7 Order, 6 Menu, 18 Relasi)
+├── TUBES_RESTORAN.cbp       # File proyek Code::Blocks
+├── TUBES_RESTORAN.depend    # File dependensi Code::Blocks
+├── TUBES_RESTORAN.layout    # File tata letak editor Code::Blocks
+└── README.md                # Dokumentasi proyek
+```
 
-**Cara penggunaan:** Jalankan aplikasi hingga muncul prompt `Pilihan: `, lalu salin seluruh isi file [dummy_data.txt](dummy_data.txt), tempel (*paste*) langsung ke jendela terminal, dan tekan **Enter** untuk mengisi 5 pesanan beserta 15 item menu secara otomatis.
+---
+
+## 🚀 Cara Menjalankan Program
+
+### Melalui Terminal (macOS / Linux)
+```bash
+g++ main.cpp pemesanan.cpp -o pemesanan_app
+./pemesanan_app
+```
+
+### Melalui Code::Blocks
+1. Buka file `TUBES_RESTORAN.cbp`.
+2. Klik **Build and Run** (`F9`).
+
+### Mengisi Data Uji Otomatis
+Buka file [dummy_data.txt](dummy_data.txt), salin seluruh isinya, lalu tempel (*paste*) langsung ke konsol saat program berada pada menu utama untuk memuat 7 transaksi (membentuk BST seimbang dengan tinggi 3), 6 menu, dan 18 item relasi secara instan.
